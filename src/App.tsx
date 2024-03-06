@@ -2,9 +2,9 @@ import { ColumnDef, Row, RowData,  flexRender, getCoreRowModel, useReactTable } 
 import { invoke } from "@tauri-apps/api/tauri";
 import { useEffect, useState } from "react";
 import { Sec } from "./types/sec";
-import "./App.css"
 import React from "react";
-import { useHotkeys } from "react-hotkeys-hook";
+import "./App.css"
+
 
 
 
@@ -94,10 +94,16 @@ function App() {
   []);
 
 
-  useHotkeys('enter', queryOne);
 
   //input handler
+  function queryOneByKey (key: string){
+    // console.log("KKKKKKKKKKKKKK ",key)
+    if(key === "Enter"){
+      queryOne()
+    }
+  }
   function queryOne (){
+    
     console.log("@",word)
     if(word.trim() == ""){
       invoke("greet").then((response) => {
@@ -115,6 +121,7 @@ function App() {
     }).catch(() => {
       console.log("eeeeeeeeeeeeeerrrrr")
     });
+    
   }
 
   function insertOne () {
@@ -210,7 +217,7 @@ function App() {
       <hr/>
 
       <div style={{margin: "auto"}}>
-        <input onChange={(e)=>{setWord(e.target.value)}} type="text" style={{margin:"5px"}} id="searchInp"/>
+        <input onChange={(e)=>{setWord(e.target.value)}}  onKeyDown={(e)=>{queryOneByKey(e.key.valueOf())}} type="text" style={{margin:"5px"}} id="searchInp"/>
         <button onClick={()=>{queryOne();}} style={{margin: "5px", background: "#0058e9", color:"#ffffff"}}>search</button>
       </div>
 

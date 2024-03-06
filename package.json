@@ -17,8 +17,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.50.1",
-    "react-hotkeys-hook": "^4.5.0"
+    "react-hook-form": "^7.50.1"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.5.8",
